@@ -1,8 +1,8 @@
 # About This Project
 
-This is a Vagrant image specification for Solr 5 running in SolrCloud mode. It provides 
+This is a Vagrant image for Solr 5 running in SolrCloud mode. It provides 
 the configuration set used by the movies collection. You can use this project for development to version your
-Solr configuration as well as use to the Vagrant provisioning scripts as a model for non-development deployments.
+Solr configuration as well as use the Vagrant provisioning scripts as a model for non-development deployments.
 
 It provides two Solr nodes using an embedded ZooKeeper instance.
 
@@ -14,7 +14,7 @@ It provides two Solr nodes using an embedded ZooKeeper instance.
 
 # Provisioning Solr 5
 
-1. Change into the root of this directory: `aem-solr-search/aemsolrsearch-vagrant`
+1. Change into the root of this directory: `aem-solr-search-product-sample/aemsolrsearch-vagrant`
 
 2. Provision the VM with Vagrant:
 
