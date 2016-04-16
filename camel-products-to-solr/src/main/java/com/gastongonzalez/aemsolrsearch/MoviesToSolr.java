@@ -4,6 +4,7 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.properties.PropertiesComponent;
+import org.apache.camel.component.solr.SolrConstants;
 import org.apache.camel.dataformat.zipfile.ZipSplitter;
 import org.apache.camel.impl.DefaultCamelContext;
 
@@ -28,21 +29,18 @@ public class MoviesToSolr
 
                 from("file:data/zip?noop=true&doneFileName=productsMovie.json.zip.done")
                     .split(new ZipSplitter())
-                        .streaming().to("file:data/json");
+                        .streaming().to("file:data/json?doneFileName=${file:name}.done");
 
-                /*
-                from("file:data/json?noop=true")
-                    .unmarshal(gsonDataFormat)
-                        .setBody().simple("${body.products}")
-                            .split().body()
-                                .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_ADD_BEAN))
-                                .to("solrCloud://localhost:8983/solr/movies?zkHost=localhost:9983&collection=gettingstarted");
-                */
+                from("file:data/json?noop=true&doneFileName=${file:name}.done")
+                    .process(new JsonToProductProcessor())
+                        .split().body()
+                            .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_ADD_BEAN))
+                            .to("solrCloud://{{solr.host}}:{{solr.port}}/solr/{{solr.collection}}?zkHost={{solr.zkhost}}&collection={{solr.collection}}");
             }
         });
 
         context.start();
-        Thread.sleep(1000 * 60 * 5); // 5 min
+        Thread.sleep(1000 * 60 * 10); // 10 min
         context.stop();
     }
 }
