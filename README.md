@@ -1,6 +1,11 @@
-# Sample AEM project template
+# AEM Solr Search: Product Sample
 
-This is a project template for AEM-based applications. It is intended as a best-practice set of examples as well as a potential starting point to develop your own functionality.
+This project was created as companion code for a couple of my 2016 talks:
+
+* _Advanced AEM Search - Consuming External Content and Enriching Content with Apache Camel_ - [CIRCUIT 2016](http://www.circuitdevcon.com/en/speakers.html). 
+* _Do you need an external search platform for Adobe Experience Manager?_  - [IMMERSE'16](https://docs.adobe.com/dev/products/aem/events/0416/sessions.html)
+
+This project is built on top of [_AEM Solr Search_](http://www.aemsolrsearch.com) and provides a demo eCommerce site in which the product integration is handled exclusively by Apache Solr.
 
 ## Modules
 
