@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/aemsolrsearch-product-sample">
+        <exclude pattern="/apps/aemsolrsearch-product-sample/install" />
+    </filter>
+    <filter root="/apps/sling" />
+    <filter root="/etc/designs/aemsolrsearch-product-sample"/>
+</workspaceFilter>
