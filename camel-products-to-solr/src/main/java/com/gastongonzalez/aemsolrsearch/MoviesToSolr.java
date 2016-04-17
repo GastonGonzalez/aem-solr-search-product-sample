@@ -1,5 +1,6 @@
 package com.gastongonzalez.aemsolrsearch;
 
+import com.gastongonzalez.aemsolrsearch.transform.GsonToSolrMovie;
 import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
@@ -34,13 +35,14 @@ public class MoviesToSolr
                 from("file:data/json?noop=true&doneFileName=${file:name}.done")
                     .process(new JsonToProductProcessor())
                         .split().body()
+                            .bean(new GsonToSolrMovie())
                             .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_ADD_BEAN))
                             .to("solrCloud://{{solr.host}}:{{solr.port}}/solr/{{solr.collection}}?zkHost={{solr.zkhost}}&collection={{solr.collection}}");
             }
         });
 
         context.start();
-        Thread.sleep(1000 * 60 * 10); // 10 min
+        Thread.sleep(1000 * 60 * 30); // 30 min
         context.stop();
     }
 }
