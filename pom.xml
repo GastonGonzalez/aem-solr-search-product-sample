@@ -494,6 +494,16 @@
                 <version>1.4</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>com.headwire.solr</groupId>
+                <artifactId>aemsolrsearch-services</artifactId>
+                <version>2.0.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.headwire.solr</groupId>
+                <artifactId>aemsolrsearch-solrj</artifactId>
+                <version>2.0.0-SNAPSHOT</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

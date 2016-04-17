@@ -136,5 +136,19 @@
             <groupId>junit-addons</groupId>
             <artifactId>junit-addons</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.headwire.solr</groupId>
+            <artifactId>aemsolrsearch-services</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.headwire.solr</groupId>
+            <artifactId>aemsolrsearch-solrj</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.3.2</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>

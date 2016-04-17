@@ -1,25 +1,29 @@
 package com.gastongonzalez.aemsolrsearch.core.models;
 
+import com.headwire.aemsolrsearch.services.SolrConfigurationService;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.felix.scr.annotations.Reference;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.request.RequestPathInfo;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.Self;;
-import org.apache.sling.settings.SlingSettingsService;
+import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.solr.client.solrj.SolrClient;
+import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.response.QueryResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.List;
 
 @Model(adaptables = SlingHttpServletRequest.class)
 public class ProductModel
 {
     private static final Logger LOG = LoggerFactory.getLogger(ProductModel.class);
-
-    @Inject
-    private SlingSettingsService settings;
 
     @Inject
     @Self
@@ -30,27 +34,71 @@ public class ProductModel
     @Default(values = "No resourceType")
     protected String resourceType;
 
-    private String name;
+    @Inject
+    @Reference
+    private SolrConfigurationService solrConfigurationService;
+
+    private MovieDocument movie;
 
     @PostConstruct
     protected void init()
     {
-        this.name = "Some Best Buy Product";
-        getProductSku();
+        final String sku = getProductSku();
+
+        if (StringUtils.isNotBlank(sku))
+        {
+            this.movie = findProductBySku(sku);
+        }
+        else
+        {
+            LOG.warn("Skipping SKU lookup since SKU is not available in selector.");
+        }
     }
 
-    public String getName()
+    public MovieDocument getMovie()
     {
-        return name;
+        return movie;
     }
 
-    private String getProductSku() {
-
+    private String getProductSku()
+    {
         final RequestPathInfo pathInfo = request.getRequestPathInfo();
         final String selectors[] = pathInfo.getSelectors();
 
-        LOG.warn("Product selector available: {}", selectors == null ? "no" : "yes");
+        return (selectors != null && selectors.length == 1) ? selectors[0] : "";
+    }
 
-        return "123456";
+    /**
+     * @param sku Movie SKU
+     * @return a movie product if found, otherwise {@code null}.
+     */
+    private MovieDocument findProductBySku(final String sku) {
+
+        // Get the appropriate SolrJ client as configured by AEM Solr Search
+        SolrClient solrclient = solrConfigurationService.getQueryingSolrClient();
+
+        // Build a fielded SKU-based query
+        final String skuQuery = String.format("sku:%s", sku);
+        SolrQuery query = new SolrQuery(skuQuery);
+        query.setRows(1);
+
+        try
+        {
+            LOG.info("Executing product query: '{}'", query);
+
+            // Search against the movies collection
+            QueryResponse response = solrclient.query("movies", query);
+
+            // Convert the Solr response to our well-defined movie POJO
+            List<MovieDocument> movies = response.getBeans(MovieDocument.class);
+
+            return CollectionUtils.isNotEmpty(movies) ? movies.get(0) : null;
+
+        } catch (Exception e)
+        {
+            LOG.error("Unable to perform product query: '{}'", skuQuery, e);
+        }
+
+        return null;
     }
 }
