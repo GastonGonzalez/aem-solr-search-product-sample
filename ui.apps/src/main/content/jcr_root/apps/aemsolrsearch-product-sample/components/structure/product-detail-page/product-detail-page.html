@@ -20,6 +20,9 @@
         <sly data-sly-include="partials/headlibs.html" data-sly-unwrap/>
     </head>
     <body class="page ${currentPage.template.name}">
+
+       <p data-sly-use.product="com.gastongonzalez.aemsolrsearch.core.models.ProductModel">${product.name}</p>
+
         <sly data-sly-include="partials/main.html" data-sly-unwrap/>
         <sly data-sly-include="partials/footlibs.html" data-sly-unwrap/>
     </body>
