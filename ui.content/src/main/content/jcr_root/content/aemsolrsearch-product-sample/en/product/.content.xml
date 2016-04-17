@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:primaryType="nt:unstructured"
+        jcr:title="Product Detail Page"
+        pageTitle="Dynamic Product Detail Page"
+        sling:resourceType="aemsolrsearch-product-sample/components/structure/product-detail-page"
+        cq:template="/apps/aemsolrsearch-product-sample/templates/product-detail-page">
+    </jcr:content>
+</jcr:root>
