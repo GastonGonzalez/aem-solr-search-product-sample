@@ -18,7 +18,7 @@
                 jcr:lastModified="{Date}2016-04-17T08:29:03.368-07:00"
                 jcr:lastModifiedBy="admin"
                 jcr:primaryType="nt:unstructured"
-                sling:resourceType="aemsolrsearch/components/ajax-solr/bootstrapsearchcontroller"
+                sling:resourceType="aemsolrsearch-product-sample/components/search/moviesearchcontroller"
                 breadbox-enable="true"
                 breadbox-id="currentsearch"
                 breadbox-target="#currentsearchselection"
