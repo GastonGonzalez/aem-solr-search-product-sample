@@ -5,10 +5,23 @@ import java.util.List;
 
 public class Movie
 {
+    private String image;
     private String name;
+    private String plot;
     private String sku;
+    private String thumbnailImage;
     private List<Person> cast;
     private List<Person> crew;
+
+    public String getImage()
+    {
+        return image;
+    }
+
+    public void setImage(String image)
+    {
+        this.image = image;
+    }
 
     public String getName()
     {
@@ -20,6 +33,16 @@ public class Movie
         this.name = name;
     }
 
+    public String getPlot()
+    {
+        return plot;
+    }
+
+    public void setPlot(String plot)
+    {
+        this.plot = plot;
+    }
+
     public String getSku()
     {
         return sku;
@@ -28,6 +51,16 @@ public class Movie
     public void setSku(String sku)
     {
         this.sku = sku;
+    }
+
+    public String getThumbnailImage()
+    {
+        return thumbnailImage;
+    }
+
+    public void setThumbnailImage(String thumbnailImage)
+    {
+        this.thumbnailImage = thumbnailImage;
     }
 
     public List<Person> getCast()
@@ -54,8 +87,11 @@ public class Movie
     public String toString()
     {
         final StringBuilder sb = new StringBuilder("Movie{");
-        sb.append("name='").append(name).append('\'');
+        sb.append("image='").append(image).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", plot='").append(plot).append('\'');
         sb.append(", sku='").append(sku).append('\'');
+        sb.append(", thumbnailImage='").append(thumbnailImage).append('\'');
         sb.append(", cast=").append(cast);
         sb.append(", crew=").append(crew);
         sb.append('}');

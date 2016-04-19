@@ -131,11 +131,13 @@
    
     
    <field name="name"  type="text_general" indexed="true" stored="true"/>
+   <field name="plot"  type="text_general" indexed="true" stored="true"/>
    <!-- Create keyword type -->
    <field name="sku"   type="string" indexed="true" stored="true" />
    <!-- TODO: create person type -->
    <field name="cast"  type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="crew"  type="string" indexed="true" stored="true" multiValued="true"/>
+   <dynamicField name="*_url"  type="string"  indexed="false"  stored="true"/>
 
    <field name="manu" type="text_general" indexed="true" stored="true" omitNorms="true"/>
    <field name="cat" type="string" indexed="true" stored="true" multiValued="true"/>
@@ -301,6 +303,7 @@
    <copyField source="content_type" dest="text"/>
    <copyField source="resourcename" dest="text"/>
    <copyField source="url" dest="text"/>
+   <copyField source="plot" dest="text"/>
 
    <!-- Create a string version of author for faceting -->
    <copyField source="author" dest="author_s"/>

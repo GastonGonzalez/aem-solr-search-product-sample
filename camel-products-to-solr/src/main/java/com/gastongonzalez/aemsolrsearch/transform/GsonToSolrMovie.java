@@ -20,6 +20,9 @@ public class GsonToSolrMovie
         doc.withSku(movie.getSku());
         doc.withCast(getNamesFromPerson(movie.getCast()));
         doc.withCrew(getNamesFromPerson(movie.getCrew()));
+        doc.withImage(movie.getImage());
+        doc.withThumbnailImage(movie.getThumbnailImage());
+        doc.withPlot(movie.getPlot());
 
         return doc;
     }

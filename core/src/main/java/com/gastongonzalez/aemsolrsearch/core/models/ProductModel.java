@@ -24,6 +24,7 @@ import java.util.List;
 public class ProductModel
 {
     private static final Logger LOG = LoggerFactory.getLogger(ProductModel.class);
+    private static final String PDP_REQ_ATTRIB = "pdp.movie";
 
     @Inject
     @Self
@@ -43,16 +44,26 @@ public class ProductModel
     @PostConstruct
     protected void init()
     {
+        if (isPdpInitialized()) {
+            LOG.warn("PDP is already initialized.");
+            return;
+        }
+
         final String sku = getProductSku();
 
         if (StringUtils.isNotBlank(sku))
         {
-            this.movie = findProductBySku(sku);
+            movie = findProductBySku(sku);
+            request.setAttribute(PDP_REQ_ATTRIB, movie);
         }
         else
         {
             LOG.warn("Skipping SKU lookup since SKU is not available in selector.");
         }
+    }
+
+    private boolean isPdpInitialized() {
+        return request.getAttribute(PDP_REQ_ATTRIB) != null;
     }
 
     public MovieDocument getMovie()

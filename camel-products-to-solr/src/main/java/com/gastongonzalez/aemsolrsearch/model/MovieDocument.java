@@ -1,5 +1,6 @@
 package com.gastongonzalez.aemsolrsearch.model;
 
+import com.gastongonzalez.aemsolrsearch.gson.Movie;
 import org.apache.solr.client.solrj.beans.Field;
 
 import java.util.Set;
@@ -16,6 +17,12 @@ public class MovieDocument
     private Set<String> cast;
     @Field
     private Set<String> crew;
+    @Field
+    private String plot;
+    @Field(value = "imageLarge_url")
+    private String image;
+    @Field(value = "imageSmall_url")
+    private String thumbnailImage;
 
     public MovieDocument withId(String id)
     {
@@ -47,6 +54,24 @@ public class MovieDocument
         return this;
     }
 
+    public MovieDocument withPlot(String plot)
+    {
+        this.plot = plot;
+        return this;
+    }
+
+    public MovieDocument withImage(String image)
+    {
+        this.image = image;
+        return this;
+    }
+
+    public MovieDocument withThumbnailImage(String thumbnailImage)
+    {
+        this.thumbnailImage = thumbnailImage;
+        return this;
+    }
+
     public String getId()
     {
         return id;
@@ -72,6 +97,21 @@ public class MovieDocument
         return crew;
     }
 
+    public String getPlot()
+    {
+        return plot;
+    }
+
+    public String getImage()
+    {
+        return image;
+    }
+
+    public String getThumbnailImage()
+    {
+        return thumbnailImage;
+    }
+
     @Override
     public String toString()
     {
@@ -81,6 +121,9 @@ public class MovieDocument
         sb.append(", sku='").append(sku).append('\'');
         sb.append(", cast=").append(cast);
         sb.append(", crew=").append(crew);
+        sb.append(", plot='").append(plot).append('\'');
+        sb.append(", image='").append(image).append('\'');
+        sb.append(", thumbnailImage='").append(thumbnailImage).append('\'');
         sb.append('}');
         return sb.toString();
     }
