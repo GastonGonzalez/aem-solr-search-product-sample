@@ -130,13 +130,14 @@
    <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false" /> 
    
     
-   <field name="name"  type="text_general" indexed="true" stored="true"/>
-   <field name="plot"  type="text_general" indexed="true" stored="true"/>
-   <!-- Create keyword type -->
-   <field name="sku"   type="string" indexed="true" stored="true" />
-   <!-- TODO: create person type -->
-   <field name="cast"  type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="crew"  type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="name"       type="text_general" indexed="true" stored="true"/>
+   <field name="plot"       type="text_general" indexed="true" stored="true"/>
+   <field name="sku"        type="string" indexed="true" stored="true" />
+   <field name="format"     type="string" indexed="true" stored="true" />
+   <field name="mpaaRating" type="string" indexed="true" stored="true" />
+   <field name="cast"       type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="crew"       type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="price"  type="float" indexed="true" stored="true"/>
    <dynamicField name="*_url"  type="string"  indexed="false"  stored="true"/>
 
    <field name="manu" type="text_general" indexed="true" stored="true" omitNorms="true"/>
@@ -145,7 +146,6 @@
    <field name="includes" type="text_general" indexed="true" stored="true" termVectors="true" termPositions="true" termOffsets="true" />
 
    <field name="weight" type="float" indexed="true" stored="true"/>
-   <field name="price"  type="float" indexed="true" stored="true"/>
    <field name="popularity" type="int" indexed="true" stored="true" />
    <field name="inStock" type="boolean" indexed="true" stored="true" />
 

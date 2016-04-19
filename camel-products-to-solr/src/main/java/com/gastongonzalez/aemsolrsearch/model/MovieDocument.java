@@ -8,7 +8,11 @@ import java.util.Set;
 public class MovieDocument
 {
     @Field
+    private String format;
+    @Field
     private String id;
+    @Field
+    private String mpaaRating;
     @Field
     private String name;
     @Field
@@ -23,10 +27,24 @@ public class MovieDocument
     private String image;
     @Field(value = "imageSmall_url")
     private String thumbnailImage;
+    @Field
+    private Float price;
+
+    public MovieDocument withFormat(String format)
+    {
+        this.format = format;
+        return this;
+    }
 
     public MovieDocument withId(String id)
     {
         this.id = id;
+        return this;
+    }
+
+    public MovieDocument withMpaaRating(String mpaaRating)
+    {
+        this.mpaaRating = mpaaRating;
         return this;
     }
 
@@ -72,9 +90,25 @@ public class MovieDocument
         return this;
     }
 
+    public MovieDocument withPrice(Float price)
+    {
+        this.price = price;
+        return this;
+    }
+
+    public String getFormat()
+    {
+        return format;
+    }
+
     public String getId()
     {
         return id;
+    }
+
+    public String getMpaaRating()
+    {
+        return mpaaRating;
     }
 
     public String getName()
@@ -112,11 +146,18 @@ public class MovieDocument
         return thumbnailImage;
     }
 
+    public Float getPrice()
+    {
+        return price;
+    }
+
     @Override
     public String toString()
     {
         final StringBuilder sb = new StringBuilder("MovieDocument{");
-        sb.append("id='").append(id).append('\'');
+        sb.append("format='").append(format).append('\'');
+        sb.append(", id='").append(id).append('\'');
+        sb.append(", mpaaRating='").append(mpaaRating).append('\'');
         sb.append(", name='").append(name).append('\'');
         sb.append(", sku='").append(sku).append('\'');
         sb.append(", cast=").append(cast);
@@ -124,6 +165,7 @@ public class MovieDocument
         sb.append(", plot='").append(plot).append('\'');
         sb.append(", image='").append(image).append('\'');
         sb.append(", thumbnailImage='").append(thumbnailImage).append('\'');
+        sb.append(", price=").append(price);
         sb.append('}');
         return sb.toString();
     }

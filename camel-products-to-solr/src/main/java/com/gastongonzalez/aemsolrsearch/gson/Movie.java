@@ -5,13 +5,26 @@ import java.util.List;
 
 public class Movie
 {
+    private String format;
     private String image;
+    private String mpaaRating;
     private String name;
     private String plot;
     private String sku;
     private String thumbnailImage;
     private List<Person> cast;
     private List<Person> crew;
+    private Float price;
+
+    public String getFormat()
+    {
+        return format;
+    }
+
+    public void setFormat(String format)
+    {
+        this.format = format;
+    }
 
     public String getImage()
     {
@@ -21,6 +34,16 @@ public class Movie
     public void setImage(String image)
     {
         this.image = image;
+    }
+
+    public String getMpaaRating()
+    {
+        return mpaaRating;
+    }
+
+    public void setMpaaRating(String mpaaRating)
+    {
+        this.mpaaRating = mpaaRating;
     }
 
     public String getName()
@@ -83,17 +106,30 @@ public class Movie
         this.crew = crew;
     }
 
+    public Float getPrice()
+    {
+        return price;
+    }
+
+    public void setPrice(Float price)
+    {
+        this.price = price;
+    }
+
     @Override
     public String toString()
     {
         final StringBuilder sb = new StringBuilder("Movie{");
-        sb.append("image='").append(image).append('\'');
+        sb.append("format='").append(format).append('\'');
+        sb.append(", image='").append(image).append('\'');
+        sb.append(", mpaaRating='").append(mpaaRating).append('\'');
         sb.append(", name='").append(name).append('\'');
         sb.append(", plot='").append(plot).append('\'');
         sb.append(", sku='").append(sku).append('\'');
         sb.append(", thumbnailImage='").append(thumbnailImage).append('\'');
         sb.append(", cast=").append(cast);
         sb.append(", crew=").append(crew);
+        sb.append(", price=").append(price);
         sb.append('}');
         return sb.toString();
     }

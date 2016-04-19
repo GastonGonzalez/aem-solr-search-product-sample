@@ -3,7 +3,7 @@
     jcr:primaryType="cq:Page">
     <jcr:content
         cq:designPath="/etc/designs/aemsolrsearch"
-        cq:lastModified="{Date}2016-04-17T08:29:03.375-07:00"
+        cq:lastModified="{Date}2016-04-18T20:40:52.802-07:00"
         cq:lastModifiedBy="admin"
         cq:template="/apps/aemsolrsearch/templates/bootstrapTemplate"
         jcr:primaryType="cq:PageContent"
@@ -15,7 +15,7 @@
             <bootstrapsearchcontr
                 jcr:created="{Date}2014-09-06T14:28:31.506-07:00"
                 jcr:createdBy="admin"
-                jcr:lastModified="{Date}2016-04-17T08:29:03.368-07:00"
+                jcr:lastModified="{Date}2016-04-18T20:40:52.787-07:00"
                 jcr:lastModifiedBy="admin"
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="aemsolrsearch-product-sample/components/search/moviesearchcontroller"
@@ -42,7 +42,7 @@
                 results-target="#searchresults"
                 search-handler="/select"
                 solr-core="movies"
-                solr-facet-fields="cast:Cast"
+                solr-facet-fields="[format:Format,mpaaRating:MPAA Rating,cast:Cast]"
                 solr-facet-show-less="- Show Less"
                 solr-facet-show-more="+ Show More"
                 solr-facet-show-num-facets="10"

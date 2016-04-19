@@ -32,9 +32,6 @@
                     <h3>${product.movie.name}</h3>
                 </div>
 
-                <div>
-                    <b>SKU:</b> ${product.movie.sku}
-                </div>
             </div>
         </div>
 
@@ -58,14 +55,34 @@
                 </div>
             </div>
 
-            <div class="well">
+            <div class="thumbnail">
 
-                <div class="text-right">
+                <div>
+                    <h4>Product Specifications</h4>
+                    <table>
+                        <tr>
+                            <td>SKU:</td>
+                            <td>${product.movie.sku}</td>
+                        </tr>
+                        <tr>
+                            <td>Format:</td>
+                            <td>${product.movie.format}</td>
+                        </tr>
+                        <tr>
+                            <td>MPAA Rating:</td>
+                            <td>${product.movie.mpaaRating}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <hr/>
+
+                <div>
                     <button type="button" class="btn btn-success" aria-label="Left Align">
                         <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                         Add to Cart
                     </button>
-                    <h4>$24.99</h4>
+                    <h4>${product.movie.price}</h4>
                 </div>
 
             </div>

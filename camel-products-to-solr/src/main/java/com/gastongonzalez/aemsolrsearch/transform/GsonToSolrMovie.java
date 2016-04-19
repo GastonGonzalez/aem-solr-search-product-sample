@@ -11,12 +11,14 @@ import java.util.Set;
 
 public class GsonToSolrMovie
 {
-
     public MovieDocument adapt(Movie movie)
     {
         MovieDocument doc = new MovieDocument();
+        doc.withFormat(movie.getFormat());
         doc.withId(movie.getSku());
+        doc.withMpaaRating(movie.getMpaaRating());
         doc.withName(movie.getName());
+        doc.withPrice(movie.getPrice());
         doc.withSku(movie.getSku());
         doc.withCast(getNamesFromPerson(movie.getCast()));
         doc.withCrew(getNamesFromPerson(movie.getCrew()));
