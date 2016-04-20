@@ -130,7 +130,7 @@
    <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false" /> 
    
     
-   <field name="name"       type="text_general" indexed="true" stored="true"/>
+   <field name="name"       type="text_general" indexed="true" stored="true" termVectors="true"/>
    <field name="plot"       type="text_general" indexed="true" stored="true"/>
    <field name="sku"        type="string" indexed="true" stored="true" />
    <field name="format"     type="string" indexed="true" stored="true" />
@@ -182,7 +182,7 @@
 
    <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->
-   <field name="text" type="text_general" indexed="true" stored="false" multiValued="true"/>
+   <field name="text" type="text_general" indexed="true" stored="false" multiValued="true" termVectors="true"/>
 
    <!-- catchall text field that indexes tokens both normally and in reverse for efficient
         leading wildcard queries. -->

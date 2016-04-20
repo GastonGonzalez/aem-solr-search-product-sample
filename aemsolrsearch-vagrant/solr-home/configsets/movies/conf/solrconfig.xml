@@ -868,6 +868,9 @@
       -->
     </requestHandler>
 
+  <requestHandler name="/mlt" class="solr.MoreLikeThisHandler">
+  </requestHandler>
+
   <!-- A request handler that returns indented JSON by default -->
   <requestHandler name="/query" class="solr.SearchHandler">
      <lst name="defaults">
@@ -1179,7 +1182,9 @@
        always be executed after the "last-components" 
        
      -->
-  
+ 
+   <searchComponent name="mlt" class="solr.MoreLikeThisComponent" /> 
+
    <!-- Spell Check
 
         The spell check component can return a list of alternative spelling
