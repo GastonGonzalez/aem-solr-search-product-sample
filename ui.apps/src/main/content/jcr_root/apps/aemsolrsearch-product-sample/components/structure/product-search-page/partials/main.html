@@ -1,0 +1,66 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">AEM Solr Search: Product Demo</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Sign In</a></li>
+            </ul>
+            <form class="navbar-form navbar-right"  method="get" action="/content/aemsolrsearch-product-sample/en/search.html">
+                <input type="text" name="q" class="form-control" placeholder="Search...">
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div data-sly-resource="${ @path='search-controller', resourceType='foundation/components/parsys'}"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="page-header">
+            <h1>AEM Search
+                <small>powered by <a href="http://www.headwire.com/">headwire.com, Inc.</a></small>
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div data-sly-resource="${ @path='par-left-main', resourceType='foundation/components/parsys'}"></div>
+        </div>
+        <div class="col-md-7">
+            <div class="search-spotlight">
+                <div data-sly-resource="${ @path='par-main', resourceType='foundation/components/parsys'}"></div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div data-sly-resource="${ @path='par-left-rail', resourceType='foundation/components/parsys'}"></div>
+        </div>
+        <div class="col-md-7">
+            <div data-sly-resource="${ @path='par-center-well', resourceType='foundation/components/parsys'}"></div>
+        </div>
+    </div>
+
+
+<div class="container">
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; headwire.com, Inc. 2016</p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<!-- /.container -->

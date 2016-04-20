@@ -87,11 +87,23 @@
             }
         }
 
-        output += '<div class="result-card">';
-        output += '<a href="' + pdpUrl + '" class="bootstrap-title">' + title + '</a>';
-        output += '<div class="bootstrap-url">' + pdpUrl + '</div>';
-        output += '<div>' + snippet + '</div></div>';
+        var thumbnail = doc.imageSmall_url;
 
+        output += '<div class="result-card">';
+
+          output += '<div class="media">';
+            output += '<div class="media-left">';
+              output += '<a href="#">';
+                output += '<img class="media-object" src="' + thumbnail + '">';
+              output += '</a>';
+             output += '</div>';
+
+             output += '<div class="media-body">';
+               output += '<h4 class="media-heading"><a href="' + pdpUrl + '" class="bootstrap-title">' + title + '</a></h4>';
+               output += '<div class="bootstrap-url">' + pdpUrl + '</div>';
+             output += '</div>';
+          output += '</div>';
+        output += '</div>';
 
         return output;
       },
