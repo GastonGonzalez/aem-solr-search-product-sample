@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
-    jcr:description="Product Detail Page"
+    jcr:description="Product Search Page"
     jcr:primaryType="cq:Template"
-    jcr:title="AEM Solr Search - Product Detail Page"
+    jcr:title="AEM Solr Search - Product Search Page"
     allowedPaths="[/content/aemsolrsearch-product-sample/.+]"
     ranking="{Long}100">
     <jcr:content
         jcr:primaryType="cq:PageContent"
-        sling:resourceType="aemsolrsearch-product-sample/components/structure/product-detail-page">
+        sling:resourceType="aemsolrsearch-product-sample/components/structure/product-search-page">
     </jcr:content>
 </jcr:root>
