@@ -15,7 +15,7 @@ public class Movie
     private String thumbnailImage;
     private List<Person> cast;
     private List<Person> crew;
-    private Float price;
+    private Float regularPrice;
 
     public String getCustomerReviewAverage()
     {
@@ -117,20 +117,20 @@ public class Movie
         this.crew = crew;
     }
 
-    public Float getPrice()
+    public Float getRegularPrice()
     {
-        return price;
+        return regularPrice;
     }
 
-    public void setPrice(Float price)
+    public void setRegularPrice(Float regularPrice)
     {
-        this.price = price;
+        this.regularPrice = regularPrice;
     }
 
     @Override
     public String toString()
     {
-        final java.lang.StringBuilder sb = new java.lang.StringBuilder("Movie{");
+        final StringBuilder sb = new StringBuilder("Movie{");
         sb.append("customerReviewAverage='").append(customerReviewAverage).append('\'');
         sb.append(", format='").append(format).append('\'');
         sb.append(", image='").append(image).append('\'');
@@ -141,7 +141,7 @@ public class Movie
         sb.append(", thumbnailImage='").append(thumbnailImage).append('\'');
         sb.append(", cast=").append(cast);
         sb.append(", crew=").append(crew);
-        sb.append(", price=").append(price);
+        sb.append(", regularPrice=").append(regularPrice);
         sb.append('}');
         return sb.toString();
     }
