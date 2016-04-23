@@ -43,7 +43,7 @@
                 results-per-page="10"
                 results-target="#searchresults"
                 solr-core="movies"
-                solr-facet-fields="[format:Format,mpaaRating:MPAA Rating,cast:Cast]"
+                solr-facet-fields="[ratings_df:Rating,format:Format,mpaaRating:MPAA Rating,cast:Cast]"
                 solr-facet-show-less="- Show Less"
                 solr-facet-show-more="+ Show More"
                 solr-facet-show-num-facets="7"

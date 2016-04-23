@@ -27,6 +27,9 @@ public class MovieDocument
     private String image;
     @Field(value = "imageSmall_url")
     private String thumbnailImage;
+    @Field(value = "ratings_df")
+    private String ratingsFacet;
+
     @Field
     private Float price;
 
@@ -81,6 +84,12 @@ public class MovieDocument
     public MovieDocument withImage(String image)
     {
         this.image = image;
+        return this;
+    }
+
+    public MovieDocument withRatingsFacet(String ratingsFacet)
+    {
+        this.ratingsFacet = ratingsFacet;
         return this;
     }
 
@@ -141,6 +150,11 @@ public class MovieDocument
         return image;
     }
 
+    public String getRatingsFacet()
+    {
+        return ratingsFacet;
+    }
+
     public String getThumbnailImage()
     {
         return thumbnailImage;
@@ -151,10 +165,70 @@ public class MovieDocument
         return price;
     }
 
+    public void setFormat(String format)
+    {
+        this.format = format;
+    }
+
+    public void setId(String id)
+    {
+        this.id = id;
+    }
+
+    public void setMpaaRating(String mpaaRating)
+    {
+        this.mpaaRating = mpaaRating;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public void setSku(String sku)
+    {
+        this.sku = sku;
+    }
+
+    public void setCast(Set<String> cast)
+    {
+        this.cast = cast;
+    }
+
+    public void setCrew(Set<String> crew)
+    {
+        this.crew = crew;
+    }
+
+    public void setPlot(String plot)
+    {
+        this.plot = plot;
+    }
+
+    public void setImage(String image)
+    {
+        this.image = image;
+    }
+
+    public void setThumbnailImage(String thumbnailImage)
+    {
+        this.thumbnailImage = thumbnailImage;
+    }
+
+    public void setRatingsFacet(String ratingsFacet)
+    {
+        this.ratingsFacet = ratingsFacet;
+    }
+
+    public void setPrice(Float price)
+    {
+        this.price = price;
+    }
+
     @Override
     public String toString()
     {
-        final StringBuilder sb = new StringBuilder("MovieDocument{");
+        final java.lang.StringBuilder sb = new java.lang.StringBuilder("MovieDocument{");
         sb.append("format='").append(format).append('\'');
         sb.append(", id='").append(id).append('\'');
         sb.append(", mpaaRating='").append(mpaaRating).append('\'');
@@ -165,6 +239,7 @@ public class MovieDocument
         sb.append(", plot='").append(plot).append('\'');
         sb.append(", image='").append(image).append('\'');
         sb.append(", thumbnailImage='").append(thumbnailImage).append('\'');
+        sb.append(", ratingsFacet='").append(ratingsFacet).append('\'');
         sb.append(", price=").append(price);
         sb.append('}');
         return sb.toString();

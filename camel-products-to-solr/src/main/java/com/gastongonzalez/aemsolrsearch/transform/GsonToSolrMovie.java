@@ -23,6 +23,7 @@ public class GsonToSolrMovie
         doc.withCast(getNamesFromPerson(movie.getCast()));
         doc.withCrew(getNamesFromPerson(movie.getCrew()));
         doc.withImage(movie.getImage());
+        doc.withRatingsFacet(movie.getCustomerReviewAverage());
         doc.withThumbnailImage(movie.getThumbnailImage());
         doc.withPlot(movie.getPlot());
 

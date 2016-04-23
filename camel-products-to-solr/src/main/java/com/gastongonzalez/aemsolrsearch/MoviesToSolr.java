@@ -1,5 +1,6 @@
 package com.gastongonzalez.aemsolrsearch;
 
+import com.gastongonzalez.aemsolrsearch.processor.SetRatingsFacetProcessor;
 import com.gastongonzalez.aemsolrsearch.transform.GsonToSolrMovie;
 import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
@@ -19,6 +20,8 @@ public class MoviesToSolr
         propertiesComponent.setLocation("classpath:movies.properties");
         propertiesComponent.setSystemPropertiesMode(PropertiesComponent.SYSTEM_PROPERTIES_MODE_OVERRIDE);
 
+        final SetRatingsFacetProcessor setRatingsFacetProcessor = new SetRatingsFacetProcessor();
+
         context.addRoutes(new RouteBuilder() {
             @Override
             public void configure() throws Exception
@@ -36,6 +39,7 @@ public class MoviesToSolr
                     .process(new JsonToProductProcessor())
                         .split().body()
                             .bean(new GsonToSolrMovie())
+                            .process(setRatingsFacetProcessor)
                             .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_ADD_BEAN))
                             .to("solrCloud://{{solr.host}}:{{solr.port}}/solr/{{solr.collection}}?zkHost={{solr.zkhost}}&collection={{solr.collection}}");
             }
