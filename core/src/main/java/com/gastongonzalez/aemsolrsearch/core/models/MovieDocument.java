@@ -26,6 +26,8 @@ public class MovieDocument
     private String image;
     @Field(value = "imageSmall_url")
     private String thumbnailImage;
+    @Field(value = "ratings_df")
+    private String ratingsFacet;
     @Field
     private Float price;
 
@@ -150,6 +152,11 @@ public class MovieDocument
         return price;
     }
 
+    public String getRatingsFacet()
+    {
+        return ratingsFacet;
+    }
+
     @Override
     public String toString()
     {
@@ -164,6 +171,7 @@ public class MovieDocument
         sb.append(", plot='").append(plot).append('\'');
         sb.append(", image='").append(image).append('\'');
         sb.append(", thumbnailImage='").append(thumbnailImage).append('\'');
+        sb.append(", ratingsFacet='").append(ratingsFacet).append('\'');
         sb.append(", price=").append(price);
         sb.append('}');
         return sb.toString();

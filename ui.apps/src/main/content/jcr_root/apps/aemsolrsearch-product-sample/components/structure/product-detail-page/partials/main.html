@@ -33,12 +33,11 @@
                 <div class="caption">
                     <h3>${product.movie.name}</h3>
                 </div>
-
             </div>
 
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-6">
 
             <div class="thumbnail">
                 <div class="caption-full">
@@ -53,23 +52,12 @@
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star-empty"></span>
-                        4.0 stars
+                        ${product.movie.ratingsFacet}
                     </p>
                 </div>
 
             </div>
 
-            <!-- /add-to-cart-->
-            <div>
-                <div class="pull-right">
-                    <button type="button" class="btn btn-success" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-                        Add to Cart
-                    </button>
-                    <h4>${product.movie.price}</h4>
-                </div>
-            </div>
-            <!-- /add-to-cart-->
 
             <hr/>
 
@@ -108,6 +96,20 @@
 
         </div>
         <!-- ./col-md-9 -->
+
+        <div class="col-md-3">
+            <!-- /add-to-cart-->
+            <div>
+                <div class="well well-sm">
+                    <h4>${product.movie.price}</h4>
+                    <button type="button" class="btn btn-success" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+            <!-- /add-to-cart-->
+        </div>
 
     </div>
 
