@@ -101,6 +101,7 @@
              output += '<div class="media-body">';
                output += '<h5 class="media-heading"><a href="' + pdpUrl + '" class="bootstrap-title">' + title + '</a></h5>';
                output += '<div class="bootstrap-url">' + pdpUrl + '</div>';
+               output += '<button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>' + doc.score + '</button>';
              output += '</div>';
 
              output += '<div class="media-right">';
