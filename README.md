@@ -9,32 +9,50 @@ This project is built on top of [_AEM Solr Search_](http://www.aemsolrsearch.com
 
 ## Modules
 
-The main parts of the template are:
+* core: Java code for the product demo.
+* ui.apps: Product demo templates and components.
+* ui.content: Product demo site.
+* camel-products-to-solr: Apache Camel application responsible for ingesting Best Buy movie product into Solr.
+* aemsolrsearch-vagrant: Vagrant specification for a 2-node SolrCloud cluster containing the demo _movies_ collection.
 
-* core: Java bundle containing all core functionality like OSGi services, listeners or schedulers, as well as component-related Java code such as servlets or request filters.
-* ui.apps: contains the /apps (and /etc) parts of the project, ie JS&CSS clientlibs, components, templates, runmode specific configs as well as Hobbes-tests
-* ui.content: contains sample content using the components from the ui.apps
+## Requirements
 
-## How to build
+* Java 8 
+* Adobe AEM 6.1 or greater
+* Maven 3.2.x
+* Vagrant: Required to aemsolrsearch-vagrant
+* VirtualBox: Required to run aemsolrsearch-vagrant
+* AEM Solr Search 2.0.0
+* Best Buy API Key
 
-To build all the modules run in the project root directory the following command with Maven 3:
+## How to Deploy the Demo
 
-    mvn clean install
+1. Install [Vagrant](https://www.vagrantup.com/downloads.html). This project uses Vagrant to fully provision Solr 5.4.1 in SolrCloud mode.
+  
+2. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads). The _Vagrantfile_ packaged with this project uses VirtualBox.
 
-If you have a running AEM instance you can build and package the whole project and deploy into AEM with  
+3. Start AEM 6.1 author.
 
-    mvn clean install -PautoInstallPackage
+4. Clone, compile and install [AEM Solr Search 2.0.0](https://github.com/headwirecom/aem-solr-search) to AEM author.
+   You may want to clone this project in another directory (i.e., outside of this project).
+
+        $ git clone https://github.com/headwirecom/aem-solr-search.git
+        $ cd aem-solr-search
+        $ mvn clean install -Pauto-deploy-all
+        
+5. Provision the demo Solr instance.
+ 
+        $ cd <root path to this project>/aemsolrsearch-vagrant
+        $ vagrant up
+        
+6. Deploy the AEM Solr Search Product Demo to AEM author.
+       
+        $ cd ../
+        $ mvn clean install -PautoInstallPackage
     
-Or to deploy it to a publish instance, run
+7. Index the Best Buy movie product data. Refer to camel-products-to-solr/README.md.
 
-    mvn clean install -PautoInstallPackagePublish
-    
-Or to deploy only the bundle to the author, run
+After the installation, the following links may be useful:
 
-    mvn clean install -PautoInstallBundle
-
-## Maven settings
-
-The project comes with the auto-public repository configured. To setup the repository in your Maven settings, refer to:
-
-    http://helpx.adobe.com/experience-manager/kb/SetUpTheAdobeMavenRepository.html
+* [SolrCloud](http://localhost:8983/solr/#/)
+* [Demo Search Page](http://localhost:4502/content/aemsolrsearch-product-sample/en/search.html)
