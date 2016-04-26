@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          jcr:primaryType="cq:WidgetCollection">
+
+        <mlt-settings
+                jcr:primaryType="cq:Widget"
+                collapsed="{Boolean}false"
+                collapsible="{Boolean}true"
+                title="Solr MoreLikeThis Settings"
+                xtype="dialogfieldset">
+            <items jcr:primaryType="cq:WidgetCollection">
+                <mlt-boost
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Disable Boost"
+                        fieldDescription="Disable boost query by interesting terms."
+                        name="./mlt-boost-disabled"
+                        defaultValue="{Boolean}false"
+                        type="checkbox"
+                        xtype="selection"
+                />
+                <mlt-minwl
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Minimum Word Length"
+                        fieldDescription="Words less than this length are ignored."
+                        name="./mlt-minwl"
+                        xtype="textfield"
+                />
+                <mlt-mintf
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Minimum Term Frequency"
+                        fieldDescription="Term frequencies less than this length are ignored."
+                        name="./mlt-mintf"
+                        xtype="textfield"
+                />
+                <mlt-fl
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Similarity Fields"
+                        fieldDescription="Solr fields to use for similarity. Fields must be comma-delimited."
+                        name="./mlt-fl"
+                        xtype="textfield"
+                />
+                <mlt-qf
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Query Fields"
+                        fieldDescription="Solr query fields and their boosts using the same format as that used in DisMaxQParserPlugin. These fields must also be specified in Similarity Fields."
+                        name="./mlt-qf"
+                        xtype="textfield"
+                />
+                <mlt-fq
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Filter queries"
+                        fieldDescription="Filter queries allow you to restrict the scope of the result set. The format is field:value (e.g., dataType_DFSCD:&quot;Knowledge Base&quot;)."
+                        name="./mlt-fq"
+                        xtype="multifield"
+                />
+            </items>
+        </mlt-settings>
+
+</jcr:root>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Dialog"
+    title="More Like This"
+    xtype="dialog">
+    <items
+        jcr:primaryType="cq:Widget"
+        xtype="tabpanel">
+        <items jcr:primaryType="cq:WidgetCollection">
+            <general
+                jcr:primaryType="cq:Panel"
+                title="General">
+                <items jcr:primaryType="cq:WidgetCollection">
+                    <placeholderText
+                        jcr:primaryType="cq:Widget"
+                        fieldLabel="Max Items"
+                        name="./max-items"
+                        xtype="textfield"/>
+                </items>
+            </general>
+            <morelikethis
+                    jcr:primaryType="cq:Panel"
+                    title="More Like This">
+                <items jcr:primaryType="cq:WidgetCollection">
+                    <moreLikeThisConfig
+                            jcr:primaryType="cq:Widget"
+                            xtype="cqinclude"
+                            path="/apps/aemsolrsearch-product-sample/components/search/morelikethis/morelikethis_dialog.infinity.json"
+                    />
+                </items>
+            </morelikethis>
+        </items>
+    </items>
+</jcr:root>
