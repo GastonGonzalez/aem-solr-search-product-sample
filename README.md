@@ -12,7 +12,7 @@ This project is built on top of [_AEM Solr Search_](http://www.aemsolrsearch.com
 * core: Java code for the product demo.
 * ui.apps: Product demo templates and components.
 * ui.content: Product demo site.
-* camel-products-to-solr: Apache Camel application responsible for ingesting Best Buy movie product into Solr.
+* camel-products-to-solr: Apache Camel application responsible for ingesting Best Buy movie products into Solr.
 * aemsolrsearch-vagrant: Vagrant specification for a 2-node SolrCloud cluster containing the demo _movies_ collection.
 
 ## Requirements
@@ -20,7 +20,7 @@ This project is built on top of [_AEM Solr Search_](http://www.aemsolrsearch.com
 * Java 8 
 * Adobe AEM 6.1 or greater
 * Maven 3.2.x
-* Vagrant: Required to aemsolrsearch-vagrant
+* Vagrant: Required to run aemsolrsearch-vagrant
 * VirtualBox: Required to run aemsolrsearch-vagrant
 * AEM Solr Search 2.0.0
 * Best Buy API Key
