@@ -18,11 +18,12 @@ public class GsonToSolrMovie
         doc.withId(movie.getSku());
         doc.withMpaaRating(movie.getMpaaRating());
         doc.withName(movie.getName());
-        doc.withPrice(movie.getPrice());
+        doc.withPrice(movie.getRegularPrice());
         doc.withSku(movie.getSku());
         doc.withCast(getNamesFromPerson(movie.getCast()));
         doc.withCrew(getNamesFromPerson(movie.getCrew()));
         doc.withImage(movie.getImage());
+        doc.withRatingsFacet(movie.getCustomerReviewAverage());
         doc.withThumbnailImage(movie.getThumbnailImage());
         doc.withPlot(movie.getPlot());
 

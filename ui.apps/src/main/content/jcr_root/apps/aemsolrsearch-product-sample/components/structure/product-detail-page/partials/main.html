@@ -1,7 +1,8 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -13,7 +14,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Sign In</a></li>
             </ul>
-            <form class="navbar-form navbar-right"  method="get" action="/content/aemsolrsearch-product-sample/en/search.html">
+            <form class="navbar-form navbar-right" method="get"
+                  action="/content/aemsolrsearch-product-sample/en/search.html">
                 <input type="text" name="q" class="form-control" placeholder="Search...">
             </form>
         </div>
@@ -31,15 +33,15 @@
                 <div class="caption">
                     <h3>${product.movie.name}</h3>
                 </div>
-
             </div>
+
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-6">
 
             <div class="thumbnail">
                 <div class="caption-full">
-                    <h4><a href="#">${product.movie.name}</a> </h4>
+                    <h4><a href="#">${product.movie.name}</a></h4>
                     <p>${product.movie.plot}</p>
                 </div>
                 <div class="ratings">
@@ -50,43 +52,62 @@
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star-empty"></span>
-                        4.0 stars
+                        ${product.movie.ratingsFacet}
                     </p>
                 </div>
+
             </div>
 
-            <div class="thumbnail">
+            <hr/>
 
-                <div>
-                    <h4>Product Specifications</h4>
-                    <table>
-                        <tr>
-                            <td>SKU:</td>
-                            <td>${product.movie.sku}</td>
-                        </tr>
-                        <tr>
-                            <td>Format:</td>
-                            <td>${product.movie.format}</td>
-                        </tr>
-                        <tr>
-                            <td>MPAA Rating:</td>
-                            <td>${product.movie.mpaaRating}</td>
-                        </tr>
-                    </table>
+            <div>
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
+                                                              data-toggle="tab">Specifications</a></li>
+                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Cast & Crew</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                        <table class="table">
+                            <tr>
+                                <td>SKU:</td>
+                                <td>${product.movie.sku}</td>
+                            </tr>
+                            <tr>
+                                <td>Format:</td>
+                                <td>${product.movie.format}</td>
+                            </tr>
+                            <tr>
+                                <td>MPAA Rating:</td>
+                                <td>${product.movie.mpaaRating}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="profile">...</div>
                 </div>
 
-                <hr/>
+            </div>
 
-                <div>
+        </div>
+        <!-- ./col-md-9 -->
+
+        <div class="col-md-3">
+            <!-- /add-to-cart-->
+            <div>
+                <div class="well well-sm">
+                    <h4>$${product.movie.price}</h4>
                     <button type="button" class="btn btn-success" aria-label="Left Align">
                         <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                         Add to Cart
                     </button>
-                    <h4>${product.movie.price}</h4>
                 </div>
-
             </div>
-
+            <!-- /add-to-cart-->
         </div>
 
     </div>

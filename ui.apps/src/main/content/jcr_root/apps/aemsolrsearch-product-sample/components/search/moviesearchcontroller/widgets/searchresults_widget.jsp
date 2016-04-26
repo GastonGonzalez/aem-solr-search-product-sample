@@ -99,9 +99,18 @@
              output += '</div>';
 
              output += '<div class="media-body">';
-               output += '<h4 class="media-heading"><a href="' + pdpUrl + '" class="bootstrap-title">' + title + '</a></h4>';
+               output += '<h5 class="media-heading"><a href="' + pdpUrl + '" class="bootstrap-title">' + title + '</a></h5>';
                output += '<div class="bootstrap-url">' + pdpUrl + '</div>';
+               //output += '<button type="button" class="btn btn-default btn-sm score"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>' + doc.score + '</button>';
+               //output += '<div class="score-info hidden">' + doc['[explain]'] + '</div>';
              output += '</div>';
+
+             output += '<div class="media-right">';
+               output += '<button type="button" class="btn btn-success" aria-label="Left Align">';
+               output += '<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Cart</button>';
+               output += '<h5>$' + doc.price + '</h5>';
+             output += '</div>';
+
           output += '</div>';
         output += '</div>';
 

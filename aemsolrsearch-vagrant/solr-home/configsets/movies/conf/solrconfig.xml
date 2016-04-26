@@ -355,7 +355,7 @@
       -->
 
      <autoSoftCommit> 
-       <maxTime>${solr.autoSoftCommit.maxTime:-1}</maxTime> 
+       <maxTime>${solr.autoSoftCommit.maxTime:30000}</maxTime>
      </autoSoftCommit>
 
     <!-- Update Related Event Listeners
@@ -791,6 +791,25 @@
        of SearchComponents (see below) and supports distributed
        queries across multiple shards
     -->
+    <requestHandler name="/movies" class="solr.SearchHandler">
+        <lst name="defaults">
+            <str name="echoParams">explicit</str>
+            <str name="defType">edismax</str>
+            <str name="qf">
+                name
+                text^0.5
+            </str>
+            <float name="tie">1.0</float>
+            <str name="mm">
+                2&lt;-1 5&lt;80%
+            </str>
+            <str name="q.alt">*:*</str>
+            <str name="rows">10</str>
+            <str name="fl">*,score</str>
+        </lst>
+    </requestHandler>
+
+
   <requestHandler name="/select" class="solr.SearchHandler">
     <!-- default values for query parameters can be specified, these
          will be overridden by parameters in the request
