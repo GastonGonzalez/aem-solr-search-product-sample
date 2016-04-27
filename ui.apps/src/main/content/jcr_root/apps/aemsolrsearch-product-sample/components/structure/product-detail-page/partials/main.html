@@ -66,8 +66,8 @@
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
                                                               data-toggle="tab">Specifications</a></li>
-                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Cast & Crew</a>
-                    </li>
+                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Cast</a></li>
+                    <li role="presentation"><a href="#crew" aria-controls="crew" role="tab" data-toggle="tab">Crew</a></li>
                 </ul>
 
                 <!-- Tab panes -->
@@ -88,7 +88,20 @@
                             </tr>
                         </table>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="profile">...</div>
+
+                    <div role="tabpanel" class="tab-pane" id="profile">
+                        <h4>Cast</h4>
+                        <ul data-sly-list="${product.movie.cast}">
+                            <li>${item}</li>
+                        </ul>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="crew">
+                        <h4>Cast</h4>
+                        <ul data-sly-list="${product.movie.crew}">
+                            <li>${item}</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <br/>
