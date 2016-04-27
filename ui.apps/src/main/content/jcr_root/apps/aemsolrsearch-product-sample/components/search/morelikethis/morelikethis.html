@@ -1,59 +1,20 @@
 <div data-sly-use.mlt="com.gastongonzalez.aemsolrsearch.core.models.MoreLikeThisModel">
-
     <div data-sly-test="${mlt.movies}" data-sly-unwrap>
 
-        <h3>Related Movies</h3>
+        <h3>Recommended Movies</h3>
 
         <div data-sly-list="${mlt.interestingTerms}">
             <span class="badge">${item}</span>
         </div>
 
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators" data-sly-list="${mlt.movies}">
-                <li data-target="#myCarousel" data-slide-to="${itemList.count}" class="active"
-                    data-sly-test="${itemList.first}"></li>
-                <li data-target="#myCarousel" data-slide-to="${itemList.count}" data-sly-test="${!itemList.first}"></li>
-            </ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox" data-sly-list="${mlt.movies}">
-
-                <div class="item active" data-sly-test="${itemList.first}">
-                    <div class="media">
-                        <div class="media-left">
-                            <img class="media-object" src="${item.thumbnailImage}">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading"><a href="${item.url}">${item.name}</a></h4>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item" data-sly-test="${!itemList.first}">
-                    <div class="media">
-                        <div class="media-left">
-                                <img class="media-object" src="${item.thumbnailImage}">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading"><a href="${item.url}">${item.name}</a></h4>
-                        </div>
-                    </div>
-                </div>
-
+        <div class="row" data-sly-list="${mlt.movies}">
+            <div class="col-xs-6 col-md-3">
+                <a href="${item.url}" class="thumbnail">
+                    <img src="${item.image}"/>
+                </a>
+                <p><a href="/content/aemsolrsearch-product-sample/en/product.${item.id}.html">${item.name}</a></p>
             </div>
-
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
         </div>
-
     </div>
-
 </div>
+

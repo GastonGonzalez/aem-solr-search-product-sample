@@ -86,8 +86,9 @@ public class MoreLikeThisModel
         SolrQuery query = new SolrQuery(skuQuery);
 
         // MLT does not fully work in SolrCloud. See https://issues.apache.org/jira/browse/SOLR-5480
+        // TODO: wire to component dialog
         query.setRequestHandler("/mlt");
-        query.setRows(6);
+        query.setRows(4);
         query.set(MoreLikeThisParams.SIMILARITY_FIELDS, "text");
         query.set(MoreLikeThisParams.QF, "text");
         query.set(MoreLikeThisParams.BOOST, true);
