@@ -11,8 +11,6 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.response.QueryResponse;
-import org.apache.solr.common.SolrDocument;
-import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.params.MoreLikeThisParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +40,8 @@ public class MoreLikeThisModel
     private SolrConfigurationService solrConfigurationService;
 
     private List<MovieDocument> movies;
+    private List<String> interestingTerms;
+    private boolean debug;
 
     @PostConstruct
     protected void init()
@@ -50,6 +50,7 @@ public class MoreLikeThisModel
 
         if (StringUtils.isNotBlank(sku))
         {
+            debug = request.getParameter("debug") != null;
             movies = findMoreLikeThisBySku(sku);
         }
     }
@@ -57,6 +58,11 @@ public class MoreLikeThisModel
     public List<MovieDocument> getMovies()
     {
         return movies;
+    }
+
+    public List<String> getInterestingTerms()
+    {
+        return interestingTerms;
     }
 
     private String getProductSku()
@@ -67,7 +73,8 @@ public class MoreLikeThisModel
         return (selectors != null && selectors.length == 1) ? selectors[0] : "";
     }
 
-    private List<MovieDocument> findMoreLikeThisBySku(final String sku) {
+    private List<MovieDocument> findMoreLikeThisBySku(final String sku)
+    {
 
         List<MovieDocument> movies = new ArrayList<MovieDocument>();
 
@@ -87,6 +94,11 @@ public class MoreLikeThisModel
         query.set(MoreLikeThisParams.MIN_WORD_LEN, 3);
         query.set(MoreLikeThisParams.MIN_TERM_FREQ, 0);
 
+        if (debug)
+        {
+            query.set(MoreLikeThisParams.INTERESTING_TERMS, "list");
+        }
+
         try
         {
             LOG.info("MLT: Executing More Like This query: '{}'", query);
@@ -97,10 +109,13 @@ public class MoreLikeThisModel
             if (response.getResults() != null)
             {
                 movies = response.getBeans(MovieDocument.class);
-                for (MovieDocument movie: movies) {
-                    LOG.info("MLT: {}", movie);
+
+                if (getDebug())
+                {
+                    interestingTerms = (ArrayList) response.getResponse().get("interestingTerms");
                 }
-            } else {
+            } else
+            {
                 LOG.warn("MLT: No More Like This results available possibly due to SOLR-5480");
             }
 
@@ -110,5 +125,10 @@ public class MoreLikeThisModel
         }
 
         return movies;
+    }
+
+    public boolean getDebug()
+    {
+        return debug;
     }
 }

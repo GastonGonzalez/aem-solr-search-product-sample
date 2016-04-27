@@ -3,6 +3,11 @@
     <div data-sly-test="${mlt.movies}" data-sly-unwrap>
 
         <h3>Related Movies</h3>
+
+        <div data-sly-list="${mlt.interestingTerms}">
+            <span class="badge">${item}</span>
+        </div>
+
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators" data-sly-list="${mlt.movies}">
