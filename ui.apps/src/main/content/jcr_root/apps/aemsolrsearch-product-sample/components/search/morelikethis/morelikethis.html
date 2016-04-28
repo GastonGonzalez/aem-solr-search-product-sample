@@ -1,0 +1,20 @@
+<div data-sly-use.mlt="com.gastongonzalez.aemsolrsearch.core.models.MoreLikeThisModel">
+    <div data-sly-test="${mlt.movies}" data-sly-unwrap>
+
+        <h3>Recommended Movies</h3>
+
+        <div data-sly-list="${mlt.interestingTerms}">
+            <span class="badge">${item}</span>
+        </div>
+
+        <div class="row" data-sly-list="${mlt.movies}">
+            <div class="col-xs-6 col-md-3">
+                <a href="${item.url}" class="thumbnail">
+                    <img src="${item.image}"/>
+                </a>
+                <p><a href="/content/aemsolrsearch-product-sample/en/product.${item.id}.html">${item.name}</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
