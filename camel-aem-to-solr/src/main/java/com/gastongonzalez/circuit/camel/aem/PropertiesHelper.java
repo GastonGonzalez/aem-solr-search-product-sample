@@ -19,7 +19,7 @@ public class PropertiesHelper {
     public static final String ACTIVEMQ_PASS_KEY = "activemq.pass";
     public static final String ACTIVEMQ_PASS_DEFAULT = "admin";
     public static final String ACTIVEMQ_TOPIC_KEY = "activemq.topic";
-    public static final String ACTIVEMQ_TOPIC_DEFAULT = "nutch-index-topic";
+    public static final String ACTIVEMQ_TOPIC_DEFAULT = "aem-index";
     public static final String ACTIVEMQ_BROKER_URL_KEY = "activemq.broker.url";
     public static final String ACTIVEMQ_BROKER_URL_DEFAULT = "tcp://localhost:61616";
     public static final String ACTIVEMQ_CLIENT_ID_KEY = "activemq.client.id";

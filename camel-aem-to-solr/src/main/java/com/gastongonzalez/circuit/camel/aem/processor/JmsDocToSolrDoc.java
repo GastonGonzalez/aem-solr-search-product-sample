@@ -10,33 +10,31 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.gastongonzalez.circuit.camel.aem.IndexerConstants.*;
+
 /**
+ * JmsDocToSolr is responsible for copying all the AEM document key/value field pairs and setting them on
+ * as headers on the current message. Since message headers are not guaranteed to be preserved across processors,
+ * this processor should be used immediately before the Solr endpoint.
+ *
  * Note: This is not production-ready code. This was written as demo code for presentation at CIRCUIT 2016.
  */
-public class JmsDoc2SolrDoc implements Processor {
+public class JmsDocToSolrDoc implements Processor {
 
-    private static final Logger LOG = LoggerFactory.getLogger(JmsDoc2SolrDoc.class);
+    private static final Logger LOG = LoggerFactory.getLogger(JmsDocToSolrDoc.class);
 
     public void process(Exchange exchange) throws Exception {
 
         HashMap<String, Object> jmsBody = exchange.getIn().getBody(HashMap.class);
-        for(Map.Entry<String, Object> entry : jmsBody.entrySet()) {
 
+        LOG.debug("Converting doc: '{}' for operation: '{}'", jmsBody.get(JMS_AEM_DOC_ID), jmsBody.get(JMS_AEM_OP_TYPE));
+
+        for(Map.Entry<String, Object> entry : jmsBody.entrySet()) {
             if (entry.getKey().startsWith(IndexerConstants.JMS_AEM_FIELD_PREFIX)) {
                 final String solrField = entry.getKey().replace(IndexerConstants.JMS_AEM_FIELD_PREFIX, SolrConstants.FIELD);
-                LOG.debug("Setting Solr header: {}={}", solrField, entry.getValue());
+                LOG.debug("Adding Solr header: '{}'='{}'", solrField, entry.getValue());
                 exchange.getIn().setHeader(solrField, entry.getValue());
             }
         }
-
-        final String docId = jmsBody.containsKey(IndexerConstants.JMS_AEM_DOC_ID)
-                ? (String) jmsBody.get(IndexerConstants.JMS_AEM_DOC_ID) : "unknown-doc-id";
-
-        // Determine the operation type requested and set the exhange header
-        final String jmsOp = jmsBody.containsKey(IndexerConstants.JMS_AEM_OP_TYPE)
-                ? (String) jmsBody.get(IndexerConstants.JMS_AEM_OP_TYPE) : IndexerConstants.JMS_AEM_OP_UNKNOWN;
-        exchange.setProperty(IndexerConstants.JMS_AEM_OP_TYPE, jmsOp);
-
-        LOG.info("Processing JMS operation: '{}' with doc id: '{}' ", jmsOp, docId);
     }
 }

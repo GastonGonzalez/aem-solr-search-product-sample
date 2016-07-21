@@ -2,7 +2,7 @@ package com.gastongonzalez.circuit.camel.aem.main;
 
 import com.gastongonzalez.circuit.camel.aem.IndexerConstants;
 import com.gastongonzalez.circuit.camel.aem.PropertiesHelper;
-import com.gastongonzalez.circuit.camel.aem.processor.JmsDoc2SolrDoc;
+import com.gastongonzalez.circuit.camel.aem.processor.JmsDocToSolrDoc;
 import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
@@ -38,11 +38,10 @@ public class AemToSolrRoutes
             public void configure() throws Exception
             {
                 from("activemq://topic:{{activemq.topic}}?clientId={{activemq.client.id}}&durableSubscriptionName={{activemq.durable.subscription.name}}")
-                .process(new JmsDoc2SolrDoc())
                 .choice()
-                    .when(exchangeProperty(IndexerConstants.JMS_AEM_OP_TYPE).isEqualTo(IndexerConstants.JMS_AEM_OP_ADD))
+                    .when(simple("${body[aem.op]} == 'ADD_DOC'"))
                         .to("direct:solrAdd")
-                    .when(exchangeProperty(IndexerConstants.JMS_AEM_OP_TYPE).isEqualTo(IndexerConstants.JMS_AEM_OP_DELETE))
+                    .when(simple("${body[aem.op]} == 'DELETE_DOC'"))
                         .to("direct:solrDelete")
                     .otherwise()
                         .log("Unknown JMS operation")
@@ -50,6 +49,7 @@ public class AemToSolrRoutes
                 ;
 
                 from("direct:solrAdd")
+                    .process(new JmsDocToSolrDoc())
                     .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_INSERT))
                     .to("solrCloud://{{solr.host}}:{{solr.port}}/solr/{{solr.collection}}?zkHost={{solr.zkhost}}&collection={{solr.collection}}")
                     .to("direct:solrCommit")
@@ -57,6 +57,7 @@ public class AemToSolrRoutes
 
                 // Set the document ID on the body
                 from("direct:solrDelete")
+                    .process(new JmsDocToSolrDoc())
                     .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_DELETE_BY_ID))
                     .setBody(header(SolrConstants.FIELD + "id"))
                     .to("solrCloud://{{solr.host}}:{{solr.port}}/solr/{{solr.collection}}?zkHost={{solr.zkhost}}&collection={{solr.collection}}")
