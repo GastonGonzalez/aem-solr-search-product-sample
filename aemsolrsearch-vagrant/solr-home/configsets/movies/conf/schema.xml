@@ -128,6 +128,8 @@
      tokens
    -->   
    <field name="id"           type="string" indexed="true" stored="true" required="true" multiValued="false" />
+  <field name="crx"         type="text_general" indexed="true" stored="true" termVectors="true"/>
+  <field name="description"         type="text_general" indexed="true" stored="true" termVectors="true"/>
    <field name="name"         type="text_general" indexed="true" stored="true" termVectors="true"/>
    <field name="plot"         type="text_general" indexed="true" stored="true"/>
    <field name="sku"          type="string" indexed="true" stored="true" />
