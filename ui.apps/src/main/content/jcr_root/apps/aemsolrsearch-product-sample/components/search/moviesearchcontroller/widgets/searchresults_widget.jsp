@@ -69,8 +69,10 @@
             }
         }
 
+        var source = (doc.source != "undefined" && doc.source) ? doc.source : "Best Buy";
+        var isAemContent = (doc.source != "undefined" && doc.source == 'AEM') ? true : false;
         var title = doc.name;
-        var pdpUrl = '/content/aemsolrsearch-product-sample/en/product.' + doc.id + '.html';
+        var pdpUrl = isAemContent ? doc.url : '/content/aemsolrsearch-product-sample/en/product.' + doc.id + '.html';
         var output = '';
 
         if(this.manager.response.highlighting && this.manager.response.highlighting[doc.id]) {
@@ -93,9 +95,11 @@
 
           output += '<div class="media">';
             output += '<div class="media-left">';
-              output += '<a href="#">';
-                output += '<img class="media-object" src="' + thumbnail + '">';
-              output += '</a>';
+              if (!isAemContent) {
+                output += '<a href="#">';
+                  output += '<img class="media-object" src="' + thumbnail + '">';
+                output += '</a>';
+              }
              output += '</div>';
 
              output += '<div class="media-body">';
@@ -106,9 +110,11 @@
              output += '</div>';
 
              output += '<div class="media-right">';
-               output += '<button type="button" class="btn btn-success" aria-label="Left Align">';
-               output += '<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Cart</button>';
-               output += '<h5>$' + doc.price + '</h5>';
+               if (!isAemContent) {
+                 output += '<button type="button" class="btn btn-success" aria-label="Left Align">';
+                 output += '<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Cart</button>';
+                 output += '<h5>$' + doc.price + '</h5>';
+               }
              output += '</div>';
 
           output += '</div>';
