@@ -9,27 +9,30 @@ This project is built on top of [_AEM Solr Search_](http://www.aemsolrsearch.com
 
 ## Modules
 
-* core: Java code for the product demo.
-* ui.apps: Product demo templates and components.
-* ui.content: Product demo site.
-* camel-products-to-solr: Apache Camel application responsible for ingesting Best Buy movie products into Solr.
-* aemsolrsearch-vagrant: Vagrant specification for a 2-node SolrCloud cluster containing the demo _movies_ collection.
+* `core`: Java code for the product demo.
+* `ui.apps`: Product demo templates and components.
+* `ui.content`: Product demo site.
+* `camel-aem-to-solr `: Standalone Apache Camel application for indexing AEM content into Solr.
+* `camel-products-to-solr`: Standalone Apache Camel application for ingesting Best Buy movie products into Solr.
+* `demo-stack-vagrant`: Vagrant image that includes Solr and ActiveMQ..
 
 ## Requirements
 
 * Java 8 
-* Adobe AEM 6.1 or greater
+* Adobe AEM 6.1 (Only tested with AEM 6.1 SP1) 
 * Maven 3.2.x
-* Vagrant: Required to run aemsolrsearch-vagrant
-* VirtualBox: Required to run aemsolrsearch-vagrant
+* Vagrant: Required to run `demo-stack-vagrant`
+* VirtualBox: Required to run `demo-stack-vagrant`
 * AEM Solr Search 2.0.0
 * Best Buy API Key
 
 ## How to Deploy the Demo
 
-1. Install [Vagrant](https://www.vagrantup.com/downloads.html). This project uses Vagrant to fully provision Solr 5.4.1 in SolrCloud mode.
+1. Install [Vagrant](https://www.vagrantup.com/downloads.html). This project uses Vagrant to fully 
+   provision Solr 5.4.1 in SolrCloud mode.
   
-2. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads). The _Vagrantfile_ packaged with this project uses VirtualBox.
+2. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads). The _Vagrantfile_ packaged with 
+   this project uses VirtualBox.
 
 3. Start AEM 6.1 author.
 
@@ -40,9 +43,9 @@ This project is built on top of [_AEM Solr Search_](http://www.aemsolrsearch.com
         $ cd aem-solr-search
         $ mvn clean install -Pauto-deploy-all
         
-5. Provision the demo Solr instance.
+5. Provision the demo stack (e.g., Solr and ActiveMQ).
  
-        $ cd <root path to this project>/aemsolrsearch-vagrant
+        $ cd <root path to this project>/demo-stack-vagrant
         $ vagrant up
         
 6. Deploy the AEM Solr Search Product Demo to AEM author.
@@ -50,9 +53,10 @@ This project is built on top of [_AEM Solr Search_](http://www.aemsolrsearch.com
         $ cd ../
         $ mvn clean install -PautoInstallPackage
     
-7. Index the Best Buy movie product data. Refer to camel-products-to-solr/README.md.
+7. Index the Best Buy movie product data. Refer to `camel-products-to-solr/README.md`.
 
 After the installation, the following links may be useful:
 
 * [SolrCloud](http://localhost:8983/solr/#/)
+* [ActvieMQ](http://localhost:8161/admin) (admin / admin)
 * [Demo Search Page](http://localhost:4502/content/aemsolrsearch-product-sample/en/search.html)
