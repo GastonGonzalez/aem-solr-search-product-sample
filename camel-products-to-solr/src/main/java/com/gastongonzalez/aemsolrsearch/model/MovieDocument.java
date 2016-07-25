@@ -29,6 +29,8 @@ public class MovieDocument
     private String thumbnailImage;
     @Field(value = "ratings_df")
     private String ratingsFacet;
+    @Field
+    private String source;
 
     @Field
     private Float price;
@@ -105,6 +107,12 @@ public class MovieDocument
         return this;
     }
 
+    public MovieDocument withSource(String source)
+    {
+        this.source = source;
+        return this;
+    }
+
     public String getFormat()
     {
         return format;
@@ -163,6 +171,10 @@ public class MovieDocument
     public Float getPrice()
     {
         return price;
+    }
+
+    public String getSource() {
+        return source;
     }
 
     public void setFormat(String format)
@@ -225,9 +237,12 @@ public class MovieDocument
         this.price = price;
     }
 
+    public void setSource(String source) {
+        this.source = source;
+    }
+
     @Override
     public String toString()
-    {
         final java.lang.StringBuilder sb = new java.lang.StringBuilder("MovieDocument{");
         sb.append("format='").append(format).append('\'');
         sb.append(", id='").append(id).append('\'');
@@ -240,6 +255,7 @@ public class MovieDocument
         sb.append(", image='").append(image).append('\'');
         sb.append(", thumbnailImage='").append(thumbnailImage).append('\'');
         sb.append(", ratingsFacet='").append(ratingsFacet).append('\'');
+        sb.append(", source='").append(source).append('\'');
         sb.append(", price=").append(price);
         sb.append('}');
         return sb.toString();

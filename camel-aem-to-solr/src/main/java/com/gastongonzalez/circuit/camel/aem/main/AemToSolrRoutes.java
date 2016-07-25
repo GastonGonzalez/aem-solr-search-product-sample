@@ -44,6 +44,7 @@ public class AemToSolrRoutes {
             from("direct:solrAdd")
                 .process(new JmsDocToSolrDoc())
                 .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_INSERT))
+                .setHeader(SolrConstants.FIELD + "source", constant("AEM"))
                 .to("solrCloud://{{solr.host}}:{{solr.port}}/solr/{{solr.collection}}?zkHost={{solr.zkhost}}&collection={{solr.collection}}")
                 .to("direct:solrCommit")
             ;

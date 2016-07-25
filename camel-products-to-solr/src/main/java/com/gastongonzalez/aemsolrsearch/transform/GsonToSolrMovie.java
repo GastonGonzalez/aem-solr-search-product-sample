@@ -13,19 +13,20 @@ public class GsonToSolrMovie
 {
     public MovieDocument adapt(Movie movie)
     {
-        MovieDocument doc = new MovieDocument();
-        doc.withFormat(movie.getFormat());
-        doc.withId(movie.getSku());
-        doc.withMpaaRating(movie.getMpaaRating());
-        doc.withName(movie.getName());
-        doc.withPrice(movie.getRegularPrice());
-        doc.withSku(movie.getSku());
-        doc.withCast(getNamesFromPerson(movie.getCast()));
-        doc.withCrew(getNamesFromPerson(movie.getCrew()));
-        doc.withImage(movie.getImage());
-        doc.withRatingsFacet(movie.getCustomerReviewAverage());
-        doc.withThumbnailImage(movie.getThumbnailImage());
-        doc.withPlot(movie.getPlot());
+        MovieDocument doc = new MovieDocument()
+                .withFormat(movie.getFormat())
+                .withId(movie.getSku())
+                .withMpaaRating(movie.getMpaaRating())
+                .withName(movie.getName())
+                .withPrice(movie.getRegularPrice())
+                .withSku(movie.getSku())
+                .withCast(getNamesFromPerson(movie.getCast()))
+                .withCrew(getNamesFromPerson(movie.getCrew()))
+                .withImage(movie.getImage())
+                .withRatingsFacet(movie.getCustomerReviewAverage())
+                .withThumbnailImage(movie.getThumbnailImage())
+                .withPlot(movie.getPlot())
+                .withSource("Best Buy");
 
         return doc;
     }
@@ -36,7 +37,7 @@ public class GsonToSolrMovie
 
         if (CollectionUtils.isNotEmpty(people))
         {
-            for (Person person: people)
+            for (Person person : people)
             {
                 peopleNames.add(person.getName());
             }
