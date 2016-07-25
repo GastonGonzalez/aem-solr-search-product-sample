@@ -32,7 +32,7 @@ the demo for my CIRCUIT presentation.**
 
     * [http://solrnode1:8983/solr](http://solrnode1:8983/solr)
     * [http://solrnode2:7574/solr](http://solrnode2:7574/solr)
-    * [localhost:8161/admin](localhost:8161/admin)
+    * [http://localhost:8161/admin](http://localhost:8161/admin)
   
     
 # Development Recommendations

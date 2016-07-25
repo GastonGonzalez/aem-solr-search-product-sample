@@ -58,5 +58,5 @@ This project is built on top of [_AEM Solr Search_](http://www.aemsolrsearch.com
 After the installation, the following links may be useful:
 
 * [SolrCloud](http://localhost:8983/solr/#/)
-* [ActvieMQ](http://localhost:8161/admin) (admin / admin)
+* [ActiveMQ](http://localhost:8161/admin) (admin / admin)
 * [Demo Search Page](http://localhost:4502/content/aemsolrsearch-product-sample/en/search.html)

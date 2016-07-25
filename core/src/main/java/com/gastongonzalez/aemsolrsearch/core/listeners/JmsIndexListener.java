@@ -99,9 +99,11 @@ public class JmsIndexListener implements EventHandler {
     protected void addPage(Page page) {
         LOG.info("Send JMS INDEX_ADD operation");
 
+        // Note: You may want to delegate the creation of the document model to another OSGi services. The following
+        // is very simple document model for the purpose of keeping the demo light.
         HashMap<String, Object> jmsDoc = createJmsDocByOp(JMS_AEM_OP_ADD);
         jmsDoc.put(JMS_AEM_FIELD_PREFIX + "id", page.getPath());
-        jmsDoc.put(JMS_AEM_FIELD_PREFIX + "crxPath", page.getPath());
+        jmsDoc.put(JMS_AEM_FIELD_PREFIX + "crx_path", page.getPath());
         jmsDoc.put(JMS_AEM_FIELD_PREFIX + "url", page.getPath() + ".html");
         jmsDoc.put(JMS_AEM_FIELD_PREFIX + "name", page.getTitle());
         jmsDoc.put(JMS_AEM_FIELD_PREFIX + "description", page.getDescription());
