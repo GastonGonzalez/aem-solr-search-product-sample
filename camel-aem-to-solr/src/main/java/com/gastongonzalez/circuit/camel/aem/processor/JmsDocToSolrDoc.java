@@ -27,7 +27,10 @@ public class JmsDocToSolrDoc implements Processor {
 
         HashMap<String, Object> jmsBody = exchange.getIn().getBody(HashMap.class);
 
-        LOG.debug("Converting doc: '{}' for operation: '{}'", jmsBody.get(JMS_AEM_DOC_ID), jmsBody.get(JMS_AEM_OP_TYPE));
+        final String docId = (String) jmsBody.get(JMS_AEM_DOC_ID);
+        final String opType = (String) jmsBody.get(JMS_AEM_OP_TYPE);
+
+        LOG.debug("Converting doc: '{}' for operation: '{}'", docId, opType);
 
         for(Map.Entry<String, Object> entry : jmsBody.entrySet()) {
             if (entry.getKey().startsWith(IndexerConstants.JMS_AEM_FIELD_PREFIX)) {
@@ -35,6 +38,12 @@ public class JmsDocToSolrDoc implements Processor {
                 LOG.debug("Adding Solr header: '{}'='{}'", solrField, entry.getValue());
                 exchange.getIn().setHeader(solrField, entry.getValue());
             }
+        }
+
+        if (JMS_AEM_OP_DELETE.equals(opType)) {
+            String deleteByQuery = String.format("crx_path:\"%s\"", docId);
+            LOG.debug("Setting delete by query: '{}' as body", deleteByQuery);
+            exchange.getIn().setBody(deleteByQuery);
         }
     }
 }

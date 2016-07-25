@@ -13,7 +13,7 @@ import org.apache.camel.main.Main;
  * Camel route definitions for reading AEM index requests off an ActiveMQ topic and sending the request to
  * Solr for indexing.
  *
- * Note: This is not production-ready code. This was written as demo code for presentation at CIRCUIT 2016.
+ * Note: This is not production-ready code. This was written as demo code for my presentation at CIRCUIT 2016.
  *
  * @author Gaston Gonzalez
  */
@@ -50,8 +50,7 @@ public class AemToSolrRoutes {
 
             from("direct:solrDelete")
                 .process(new JmsDocToSolrDoc())
-                .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_DELETE_BY_ID))
-                .setBody(header(SolrConstants.FIELD + "id"))
+                .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_DELETE_BY_QUERY))
                 .to("solrCloud://{{solr.host}}:{{solr.port}}/solr/{{solr.collection}}?zkHost={{solr.zkhost}}&collection={{solr.collection}}")
                 .to("direct:solrCommit")
             ;
