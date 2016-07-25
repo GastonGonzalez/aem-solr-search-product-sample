@@ -53,10 +53,30 @@ This project is built on top of [_AEM Solr Search_](http://www.aemsolrsearch.com
         $ cd ../
         $ mvn clean install -PautoInstallPackage
     
-7. Index the Best Buy movie product data. Refer to `camel-products-to-solr/README.md`.
-
 After the installation, the following links may be useful:
 
 * [SolrCloud](http://localhost:8983/solr/#/)
 * [ActiveMQ](http://localhost:8161/admin) (admin / admin)
 * [Demo Search Page](http://localhost:4502/content/aemsolrsearch-product-sample/en/search.html)
+
+## Indexing Content
+
+### Product Content
+
+Index the Best uy movie product data. Refer to `camel-products-to-solr/README.md`.
+
+### AEM Content
+
+1. Change into the `camel-aem-to-solr` module and run Camel.
+
+        $ cd camel-aem-to-solr
+        $ ./run.sh
+
+2. In a new terminal, tail the log file so that you can monitor the JMS index listener in AEM.
+
+        $ tail -n0 -f /path-to-aem/crx-quickstart/logs/aemsolrsearch-product-sample.log
+
+
+3. Create a page in AEM under `/content/aemsolrsearch-product-sample/en`. Notice
+   that the event is handled by the JMS listener; sent to the `aem-index` topic in
+   ActiveMQ; read by Camel; and sent to Solr for indexing.

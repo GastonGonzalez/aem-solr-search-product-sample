@@ -43,7 +43,7 @@ echo "Starting Solr node 2..."
 service solr2 start
 
 echo "Creating collection..."
-curl "http://localhost:8983/solr/admin/collections?action=CREATE&name=movies&numShards=2&replicationFactor=2&maxShardsPerNode=2&collection.configName=movies"
+curl -s "http://localhost:8983/solr/admin/collections?action=CREATE&name=movies&numShards=2&replicationFactor=2&maxShardsPerNode=2&collection.configName=movies"
 
 cat << EOF
 
