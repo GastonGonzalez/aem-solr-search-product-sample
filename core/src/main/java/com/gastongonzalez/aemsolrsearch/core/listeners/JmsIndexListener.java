@@ -101,10 +101,10 @@ public class JmsIndexListener implements EventHandler {
 
         HashMap<String, Object> jmsDoc = createJmsDocByOp(JMS_AEM_OP_ADD);
         jmsDoc.put(JMS_AEM_FIELD_PREFIX + "id", page.getPath());
-        //jmsDoc.put(JMS_AEM_FIELD_PREFIX + "crx", page.getPath());
-        //jmsDoc.put(JMS_AEM_FIELD_PREFIX + "url", page.getPath() + ".html");
+        jmsDoc.put(JMS_AEM_FIELD_PREFIX + "crxPath", page.getPath());
+        jmsDoc.put(JMS_AEM_FIELD_PREFIX + "url", page.getPath() + ".html");
         jmsDoc.put(JMS_AEM_FIELD_PREFIX + "name", page.getTitle());
-        //jmsDoc.put(JMS_AEM_FIELD_PREFIX + "description", page.getDescription());
+        jmsDoc.put(JMS_AEM_FIELD_PREFIX + "description", page.getDescription());
 
         logDoc(jmsDoc);
 
@@ -128,9 +128,9 @@ public class JmsIndexListener implements EventHandler {
         // Note: This is not production-ready code. Consider making the following customizations:
         // 1. Define JMS properties using configuration admin (e.g, broker URL and topic name)
         // 2. Move this listener into its own bundle:
-        //    a. Initial the factory, connection, session and MessageProducer once.
+        //    a. Initialize the factory, connection, session and MessageProducer once.
         //    b. Re-initialize the above as needed during the various OSGi lifecycle phases.
-        //    c. Use pooling with JMS
+        //    c. Use pooling with JMS.
         try {
             ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(brokerUrl);
             Connection connection = factory.createConnection();
