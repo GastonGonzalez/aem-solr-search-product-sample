@@ -52,7 +52,14 @@ This project is built on top of [_AEM Solr Search_](http://www.aemsolrsearch.com
        
         $ cd ../
         $ mvn clean install -PautoInstallPackage
-    
+
+7. Visit http://localhost:4502/system/console/configMgr and update `AEM Solr Search - Solr Configuration Service` with
+   these demos settings:
+
+    * Add `/movies` to _Allowed request handlers_    
+    * Set `SolrCloud` as the _Solr Mode_
+    * Set `http://localhost:8983/solr` as the _Master Server_
+
 After the installation, the following links may be useful:
 
 * [SolrCloud](http://localhost:8983/solr/#/)
