@@ -1,0 +1,44 @@
+#!/bin/bash
+#
+# /etc/rc.d/init.d/activemq
+#
+#
+# # of the file to the end of the tags section must begin with a #
+# character. After the tags section, there should be a blank line.
+# This keeps normal comments in the rest of the file from being
+# mistaken for tags, should they happen to fit the pattern.>
+#
+# chkconfig: 35 85 15
+# description: This service manages the ActiveMQ java process.
+# processname: activemq
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+SCRIPT_NAME=`basename $0`
+ACTIVEMQ_ROOT=/opt/apache-activemq
+RUNAS=activemq
+
+case "$1" in
+  start)
+    echo -n "Starting ActiveMQ service ($ACTIVEMQ_ROOT): "
+    su -c "\"$ACTIVEMQ_ROOT/bin/activemq\" start" - "$RUNAS"
+    ;;
+  stop)
+    echo -n "Shutting down ActiveMQ services: "
+    su -c "\"$ACTIVEMQ_ROOT/bin/activemq\" stop" - "$RUNAS"
+    ;;
+  status)
+    su - ${ACTIVEMQ_USER} ${STATUS}
+    ;;
+  restart)
+    su - ${ACTIVEMQ_USER} ${STOP}
+    su - ${ACTIVEMQ_USER} ${START}
+    ;;
+  reload)
+    ;;
+  *)
+    echo "Usage: $SCRIPT_NAME {start|stop|status|reload}"
+    exit 1
+    ;;
+esac

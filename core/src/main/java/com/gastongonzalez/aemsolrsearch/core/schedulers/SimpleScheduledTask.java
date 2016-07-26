@@ -46,7 +46,7 @@ public class SimpleScheduledTask implements Runnable {
     
     @Override
     public void run() {
-        logger.debug("SimpleScheduledTask is now running, myParameter='{}'", myParameter);
+        logger.trace("SimpleScheduledTask is now running, myParameter='{}'", myParameter);
     }
     
     @Property(label = "A parameter", description = "Can be configured in /system/console/configMgr")

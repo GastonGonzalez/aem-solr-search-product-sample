@@ -1,10 +1,11 @@
 # About This Project
 
-This is a Vagrant image for Solr 5 running in SolrCloud mode. It provides 
-the configuration set used by the movies collection. You can use this project for development to version your
-Solr configuration as well as use the Vagrant provisioning scripts as a model for non-development deployments.
+This project is a Vagrant image for use with the demo code. It provides fully configured instances
+of Apache Solr and ActiveMQ. The provisioning process configures Solr in SolrCloud mode, with two
+nodes and an embedded ZooKeeper instance. 
 
-It provides two Solr nodes using an embedded ZooKeeper instance.
+**Please note, this stack is not suitale for production deployments and is only designed to support 
+the demo for my CIRCUIT presentation.**
 
 # Requirements
 
@@ -14,7 +15,7 @@ It provides two Solr nodes using an embedded ZooKeeper instance.
 
 # Provisioning Solr 5
 
-1. Change into the root of this directory: `aem-solr-search-product-sample/aemsolrsearch-vagrant`
+1. Change into the root of this directory: `aem-solr-search-product-sample/demo-stack-vagrant`
 
 2. Provision the VM with Vagrant:
 
@@ -26,10 +27,12 @@ It provides two Solr nodes using an embedded ZooKeeper instance.
         127.0.0.1 solrnode1
         127.0.0.1 solrnode2 
 
-4. Once the provisioning is done, you can access Solr:
+4. Once the provisioning is done, you can access Solr and ActiveMQ via a web browser from your host
+   operating system.
 
     * [http://solrnode1:8983/solr](http://solrnode1:8983/solr)
     * [http://solrnode2:7574/solr](http://solrnode2:7574/solr)
+    * [http://localhost:8161/admin](http://localhost:8161/admin)
   
     
 # Development Recommendations

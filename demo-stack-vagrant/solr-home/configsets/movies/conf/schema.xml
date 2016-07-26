@@ -128,6 +128,8 @@
      tokens
    -->   
    <field name="id"           type="string" indexed="true" stored="true" required="true" multiValued="false" />
+   <field name="crx_path"     type="descendent_path" indexed="true"  stored="true"/>
+   <field name="description"  type="text_general" indexed="true" stored="true" termVectors="true"/>
    <field name="name"         type="text_general" indexed="true" stored="true" termVectors="true"/>
    <field name="plot"         type="text_general" indexed="true" stored="true"/>
    <field name="sku"          type="string" indexed="true" stored="true" />
@@ -138,10 +140,13 @@
    <field name="price"        type="float" indexed="true" stored="true"/>
    <field name="popularity"   type="int" indexed="true" stored="true" />
    <field name="inStock"      type="boolean" indexed="true" stored="true" />
+   <field name="source"       type="string" indexed="true" stored="true"/>
    <field name="store"        type="location" indexed="true" stored="true"/>
    <field name="text"         type="text_general" indexed="true" stored="false" multiValued="true" termVectors="true"/>
-   <dynamicField name="*_url" type="string"  indexed="false"  stored="true"/>
-   <dynamicField name="*_df"  type="string"  indexed="true" stored="true" multiValued="true"/>
+   <field name="url"          type="string" indexed="false" stored="true"/>
+   <dynamicField name="analytics_*"  type="int" indexed="true" stored="true"/>
+   <dynamicField name="*_url" type="string" indexed="false" stored="true"/>
+   <dynamicField name="*_df"  type="string" indexed="true" stored="true" multiValued="true"/>
 
    <!-- Dynamic field definitions allow using convention over configuration
        for fields via the specification of patterns to match field names. 
@@ -551,10 +556,10 @@
     -->
     <fieldType name="descendent_path" class="solr.TextField">
       <analyzer type="index">
-  <tokenizer class="solr.PathHierarchyTokenizerFactory" delimiter="/" />
+        <tokenizer class="solr.PathHierarchyTokenizerFactory" delimiter="/" />
       </analyzer>
       <analyzer type="query">
-  <tokenizer class="solr.KeywordTokenizerFactory" />
+        <tokenizer class="solr.KeywordTokenizerFactory" />
       </analyzer>
     </fieldType>
     <!-- 

@@ -43,7 +43,7 @@
                 results-target="#searchresults"
                 search-handler="/movies"
                 solr-core="movies"
-                solr-facet-fields="[ratings_df:Rating,format:Format,mpaaRating:MPAA Rating,cast:Cast]"
+                solr-facet-fields="[source:Content Source,ratings_df:Rating,format:Format,mpaaRating:MPAA Rating,cast:Cast]"
                 solr-facet-show-less="- Show Less"
                 solr-facet-show-more="+ Show More"
                 solr-facet-show-num-facets="7"

@@ -45,6 +45,9 @@ public class MoviesToSolr
             }
         });
 
+        // See the 'camel-aem-to-solr' module for an example of how to use Camel's main wrapper.
+        // com.gastongonzalez.circuit.camel.aem.main.AemToSolrRoutes. This class simply starts the Camel context
+        // and waits for 30 minutes before stopping it.
         context.start();
         Thread.sleep(1000 * 60 * 30); // 30 min
         context.stop();
