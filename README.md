@@ -53,8 +53,8 @@ This project is built on top of [_AEM Solr Search_](http://www.aemsolrsearch.com
         $ cd ../
         $ mvn clean install -PautoInstallPackage
 
-7. Visit http://localhost:4502/system/console/configMgr and update `AEM Solr Search - Solr Configuration Service` with
-   these demos settings:
+7. Visit the [Felix Console](http://localhost:4502/system/console/configMgr) and update `AEM Solr Search - Solr Configuration Service` with
+   these demo settings:
 
     * Add `/movies` to _Allowed request handlers_    
     * Set `SolrCloud` as the _Solr Mode_
