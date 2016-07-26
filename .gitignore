@@ -172,4 +172,6 @@ release.properties
 ### VLT Tool
 .vlt
 
-camel-products-to-solr/data/
+camel-products-to-solr/data
+camel-aem-to-solr/data/.camel
+*.camelLock

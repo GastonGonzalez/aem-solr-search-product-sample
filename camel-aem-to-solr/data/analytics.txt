@@ -1,0 +1,6 @@
+# Description: A dummy analytics file to demonstrate content enrichment.
+# Format: CRX Path,Page Views
+/content/aemsolrsearch-product-sample/en/demo1,10
+/content/aemsolrsearch-product-sample/en/demo2,100
+/content/aemsolrsearch-product-sample/en/demo3,1000
+/content/aemsolrsearch-product-sample/en/demo4,10000

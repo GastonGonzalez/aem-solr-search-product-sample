@@ -1,6 +1,7 @@
 package com.gastongonzalez.circuit.camel.aem.main;
 
 import com.gastongonzalez.circuit.camel.aem.PropertiesHelper;
+import com.gastongonzalez.circuit.camel.aem.enrich.AnalyticsAggregationStrategy;
 import com.gastongonzalez.circuit.camel.aem.processor.JmsDocToSolrDoc;
 import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.apache.camel.CamelContext;
@@ -43,6 +44,9 @@ public class AemToSolrRoutes {
 
             from("direct:solrAdd")
                 .process(new JmsDocToSolrDoc())
+                // Do not delete our dummy analytics file after it has been read and do not create a read lock otherwise
+                // subsequent message will block.
+                .pollEnrich("file:data?fileName=analytics.txt&noop=true&idempotent=false&readLock=none", new AnalyticsAggregationStrategy())
                 .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_INSERT))
                 .setHeader(SolrConstants.FIELD + "source", constant("AEM"))
                 .to("solrCloud://{{solr.host}}:{{solr.port}}/solr/{{solr.collection}}?zkHost={{solr.zkhost}}&collection={{solr.collection}}")
