@@ -243,6 +243,7 @@ public class MovieDocument
 
     @Override
     public String toString()
+    {
         final java.lang.StringBuilder sb = new java.lang.StringBuilder("MovieDocument{");
         sb.append("format='").append(format).append('\'');
         sb.append(", id='").append(id).append('\'');

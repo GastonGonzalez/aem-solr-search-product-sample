@@ -70,7 +70,7 @@ After the installation, the following links may be useful:
 
 ### Product Content
 
-Index the Best uy movie product data. Refer to `camel-products-to-solr/README.md`.
+Index the Best Buy movie product data. Refer to `camel-products-to-solr/README.md`.
 
 ### AEM Content
 
